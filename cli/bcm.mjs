@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 import {open,realpath} from 'node:fs/promises';
+import {constants} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {scanDocument,indexBlockIds,validateScannedBlocks} from '../dist/index.js';
 const LIMIT=4*1024*1024, TOTAL=16*1024*1024;
 async function read(path){
-  const file=await open(path,'r');
+  const file=await open(path,constants.O_RDONLY|constants.O_NONBLOCK);
   try{
     const s=await file.stat();
     if(!s.isFile()||s.size>LIMIT)throw Error('Expected regular file up to 4 MiB');

@@ -13,3 +13,5 @@ Added indexBlockIds for scanned block directives across explicit document sets, 
 ## M03 continuation — partial block validation and CLI
 
 Added validateScannedBlocks for figure/pagebreak/blank-page lexical schemas; parseReferenceToken and resolveExplicitReferences for isolated, caller-contextualized tokens; no inline document scanning or semantic reference validation. Added read-only CLI parse/validate/ids, JSON, bounded UTF-8 input, exit 0/1/2. Results always complete=false and publicationReady=false. Four tests added, execution pending. Prior block index core CI succeeded.
+
+Review fixes: diagnose missing trailing leaf/container boundaries (except a parent close); open explicit CLI paths in nonblocking read mode and reject nonregular files. Added regression tests. Previous validation/CLI CI passed; review-fix CI pending.

@@ -34,3 +34,16 @@ test('CLI emits JSON, diagnoses invalid input and never edits files',()=>{
     assert.equal(run('validate',join(dir,'missing.md')).status,2);
   }finally{rmSync(dir,{recursive:true,force:true});}
 });
+
+test('leaf and container require a following boundary; parent close is allowed',()=>{
+  assert.equal(validate('::figure{src="a.png"}\nText\n').diagnostics[0].code,'BCM_BLOCK_BOUNDARY');
+  assert.equal(validate(':::layout{}\nText\n:::\nText\n').diagnostics[0].code,'BCM_BLOCK_BOUNDARY');
+  assert.deepEqual(validate(':::layout{}\n::figure{src="a.png"}\n:::\n').diagnostics,[]);
+});
+test('CLI rejects named pipe without blocking on POSIX', {skip:process.platform==='win32'},()=>{
+  const dir=mkdtempSync(join(tmpdir(),'bcm-fifo-'));try{
+    const p=join(dir,'pipe');const mk=spawnSync('mkfifo',[p]);assert.equal(mk.status,0);
+    const r=spawnSync(process.execPath,['cli/bcm.mjs','validate',p],{encoding:'utf8',timeout:3000});
+    assert.equal(r.status,2,r.error?.message??r.stderr);
+  }finally{rmSync(dir,{recursive:true,force:true});}
+});
