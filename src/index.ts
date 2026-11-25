@@ -68,3 +68,4 @@ export function applyPatches(source: string, patches: readonly Patch[]): string 
 }
 export {scanDocument, type Block, type DocumentResult} from './document.js';
 export * from './block-ids.js';
+export * from './validation.js';

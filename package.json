@@ -17,7 +17,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "npm run build && node --test tests/*.test.mjs"
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "bcm": "node cli/bcm.mjs"
   },
   "devDependencies": {
     "typescript": "5.8.3"

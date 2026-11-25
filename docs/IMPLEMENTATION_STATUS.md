@@ -9,3 +9,7 @@ Added scanDocument (experimental lossless block scanner), nested BCM containers,
 ## Third milestone — block ID index PoC
 
 Added indexBlockIds for scanned block directives across explicit document sets, nested IDs, duplicate diagnostics with both positions, and three tests. No inline references, schema validation, full CommonMark/GFM or complete reference index yet. Scanner limitations remain. Tests added; execution not yet verified.
+
+## M03 continuation — partial block validation and CLI
+
+Added validateScannedBlocks for figure/pagebreak/blank-page lexical schemas; parseReferenceToken and resolveExplicitReferences for isolated, caller-contextualized tokens; no inline document scanning or semantic reference validation. Added read-only CLI parse/validate/ids, JSON, bounded UTF-8 input, exit 0/1/2. Results always complete=false and publicationReady=false. Four tests added, execution pending. Prior block index core CI succeeded.

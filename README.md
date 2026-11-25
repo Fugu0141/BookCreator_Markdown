@@ -56,3 +56,12 @@ TypeScript 5.8.3 is pinned. The lockfile is not yet generated; see [implementati
 ## License / ライセンス
 
 MIT is the intended license, subject to dependency review and final confirmation. No final license has been selected yet. This repository is public but no package has been released.
+
+### Experimental CLI (build first)
+
+    npm run build
+    npm run bcm -- parse chapter.md
+    npm run bcm -- validate chapter1.md chapter2.md
+    npm run bcm -- ids chapter1.md chapter2.md
+
+Read-only scanner-subset inspection; exit 0 means no detected errors in this subset, not full conformance. 1 = detected validation errors, 2 = usage/I/O error. Inline reference extraction and complete CommonMark/GFM remain pending.
