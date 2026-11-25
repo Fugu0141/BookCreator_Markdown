@@ -1,0 +1,41 @@
+# BookCreator Markdown (BCM)
+
+A proposed Markdown extension and TypeScript library for structured book authoring, with source-preserving editing, declarative layout directives, and stable references.
+
+BookCreator Markdown（BCM）は、通常のMarkdownに書籍制作向けの拡張記法を追加する独立した文書形式・ライブラリです。最初の利用アプリは [BookCreator](https://github.com/Fugu0141/BookCreator) ですが、他のアプリケーションでも利用可能な設計を目指します。
+
+**Status / 状態:** Specification and architecture draft. Parser implementation, conformance testing, and npm publication are not yet available.
+
+## Goals / 目標
+
+- CommonMark/GFM compatibility with declarative BCM extensions.
+- Source-preserving parsing and localized edits.
+- Typed attributes, custom components, stable IDs and cross-reference validation.
+- Shared TypeScript core for Node.js and browsers, with a standalone CLI.
+- No dependency on BookCreator's GUI, pagination engine, or PDF renderer.
+
+## Example / 記法例
+
+    # Getting started
+
+    :::callout{kind="tip" title="Tip"}
+    Keep the original Markdown readable.
+    :::
+
+    ::figure{#fig-example src="../assets/example.png" width="75%" alt="Example" caption="Example"}
+
+    See :ref{target="fig-example" format="label-number"}.
+
+    ::pagebreak{side="any"}
+
+## Documentation / 設計書
+
+- [BCM v1 language specification (draft)](docs/SPECIFICATION.md)
+- [Library architecture and proposed API](docs/ARCHITECTURE.md)
+- [BookCreator application design](https://github.com/Fugu0141/BookCreator/blob/main/DESIGN.md)
+
+The BCM language specification is maintained in this repository. BookCreator consumes the library; BCM does not depend on BookCreator.
+
+## License / ライセンス
+
+MIT is the intended license, subject to dependency review and final confirmation. No final license has been selected yet. This repository is public but no package has been released.
