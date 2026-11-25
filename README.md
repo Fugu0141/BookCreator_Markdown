@@ -4,7 +4,7 @@ A proposed Markdown extension and TypeScript library for structured book authori
 
 BookCreator Markdown（BCM）は、通常のMarkdownに書籍制作向けの拡張記法を追加する独立した文書形式・ライブラリです。最初の利用アプリは [BookCreator](https://github.com/Fugu0141/BookCreator) ですが、他のアプリケーションでも利用可能な設計を目指します。
 
-**Status / 状態:** Specification and architecture draft. Parser implementation, conformance testing, and npm publication are not yet available.
+**Status:** Initial implementation 0.0.1: isolated directive header parser and source patches. Full document parser and conformance remain pending.
 
 ## Goals / 目標
 
@@ -39,6 +39,19 @@ The BCM language specification is maintained in this repository. BookCreator con
 - [Implementation and fixture plan](docs/DEVELOPMENT.md)
 
 - [Cross-project development plan](https://github.com/Fugu0141/BookCreator/blob/main/docs/DEVELOPMENT_PLAN.md)
+
+
+## Local development / ローカル開発
+
+Node.js 22 or later and npm are required. Run from this repository:
+
+```sh
+npm install
+npm run typecheck
+npm test
+```
+
+TypeScript 5.8.3 is pinned. The lockfile is not yet generated; see [implementation status](docs/IMPLEMENTATION_STATUS.md). GitHub Actions is configured for initial checks; full conformance is pending.
 
 ## License / ライセンス
 
