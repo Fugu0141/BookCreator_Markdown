@@ -3,6 +3,7 @@
 - 状態: 設計ドラフト 0.1.0。実装・npm公開・PoCは未実施。
 - 言語仕様の正本: [SPECIFICATION.md](SPECIFICATION.md)
 - 利用アプリ: [BookCreator](https://github.com/Fugu0141/BookCreator)
+- 関連ライブラリ: [BookCreator Layout Engine](https://github.com/Fugu0141/BookCreator_LayoutEngine)（BCMとは独立。BookCreator側のアダプタがASTを中立組版入力へ変換する）
 - 主言語: TypeScript（strict）。Node.jsとブラウザで利用できる共通コアを目標とする。
 - ライセンス: MITを第一希望とし、依存確認後に確定する。
 
