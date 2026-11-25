@@ -66,3 +66,4 @@ export function applyPatches(source: string, patches: readonly Patch[]): string 
   for (const p of sorted.reverse()) result = result.slice(0,p.range.start) + p.replacement + result.slice(p.range.end);
   return result;
 }
+export {scanDocument, type Block, type DocumentResult} from './document.js';
