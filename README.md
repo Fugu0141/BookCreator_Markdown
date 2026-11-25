@@ -36,6 +36,10 @@ BookCreator Markdown（BCM）は、通常のMarkdownに書籍制作向けの拡�
 
 The BCM language specification is maintained in this repository. BookCreator consumes the library; BCM does not depend on BookCreator.
 
+- [Implementation and fixture plan](docs/DEVELOPMENT.md)
+
+- [Cross-project development plan](https://github.com/Fugu0141/BookCreator/blob/main/docs/DEVELOPMENT_PLAN.md)
+
 ## License / ライセンス
 
 MIT is the intended license, subject to dependency review and final confirmation. No final license has been selected yet. This repository is public but no package has been released.
