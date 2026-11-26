@@ -5,7 +5,7 @@
 - 利用アプリ: [BookCreator](https://github.com/Fugu0141/BookCreator)
 - 関連ライブラリ: [BookCreator Layout Engine](https://github.com/Fugu0141/BookCreator_LayoutEngine)（BCMとは独立。BookCreator側のアダプタがASTを中立組版入力へ変換する）
 - 主言語: TypeScript（strict）。Node.jsとブラウザで利用できる共通コアを目標とする。
-- ライセンス: MITを第一希望とし、依存確認後に確定する。
+- ライセンス: MIT（LICENSE参照）。第三者の依存・素材は各自のライセンスに従う。
 
 ## 1. 独立性と責務
 
@@ -94,7 +94,7 @@ validateは構文/属性/構造を検証する。indexDocumentsは明示的に�
 
 TypeScript、ESMを基本候補とする。Node.jsとブラウザの両方でコアを動かす。コアにfs、pathのOS固有処理、DOM、Electron、ネットワーク等を直接依存させない。CLIだけがNodeファイルAPIを利用し、明示された入力を扱う。バンドラー、Nodeの最低対応バージョン、CJS対応は実際の依存と利用環境を調べて決める。
 
-CommonMark/GFMの既存ライブラリ（remark/unified等）を候補として検証する。BCMの構文競合・原文範囲・部分編集が成立しない部分は独自トークナイザ/パーサーを用意する。既存仕様との一致を確認せずMarkdownの全文パーサーを置換することは前提としない。実際の依存・版・ライセンスを記録し、MITの公開希望と整合するものを選ぶ。最終ライセンス、依存選定、LICENSEの追加は別途決定する。
+CommonMark/GFMの既存ライブラリ（remark/unified等）を候補として検証する。BCMの構文競合・原文範囲・部分編集が成立しない部分は独自トークナイザ/パーサーを用意する。既存仕様との一致を確認せずMarkdownの全文パーサーを置換することは前提としない。実際の依存・版・ライセンスを記録し、MITと整合するものを選ぶ。依存選定・ライセンス確認は別途行う。
 
 ## 5. CLI（初期案）
 
