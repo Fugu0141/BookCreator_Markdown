@@ -55,7 +55,9 @@ TypeScript 5.8.3 is pinned. The lockfile is not yet generated; see [implementati
 
 ## License / ライセンス
 
-MIT is the intended license, subject to dependency review and final confirmation. No final license has been selected yet. This repository is public but no package has been released.
+This project is licensed under the [MIT License](LICENSE). Third-party materials retain their respective licenses. No npm package has been released yet.
+
+本プロジェクトはMIT Licenseで公開します。第三者の素材・依存関係には各自のライセンスが適用されます。
 
 ### Experimental CLI (build first)
 
