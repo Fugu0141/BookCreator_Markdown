@@ -25,7 +25,7 @@ function copyBlock(b:Block,delta:number):Block{
 }
 const copyDiagnostic=(d:Diagnostic,delta:number):Diagnostic=>({...d,range:shiftRange(d.range,delta)});
 function validCut(source:string,offset:number){
-  return offset===0||((source[offset-1]==='\\n'||source[offset-1]==='\\r')&&!(source[offset-1]==='\\r'&&source[offset]==='\\n'));
+  return offset>=0&&offset<=source.length&&(offset===0||((source[offset-1]==='\n'||source[offset-1]==='\r')&&!(source[offset-1]==='\r'&&source[offset]==='\n')));
 }
 export function scanDocument(source:string):DocumentResult {
   return scanFrom(source,0).result;
@@ -35,7 +35,6 @@ export function scanDocument(source:string):DocumentResult {
 export function scanDocumentIncremental(source:string,previous?:DocumentScanSnapshot):IncrementalDocumentScan{
   const old=previous?snapshots.get(previous):undefined;
   let prefix:Checkpoint={offset:0,blocks:0,diagnostics:0};
-  let suffix:Checkpoint|undefined;
   let delta=0;
   const retain=source.length<=MAX_SOURCE;
   if(retain&&old){
@@ -54,11 +53,8 @@ export function scanDocumentIncremental(source:string,previous?:DocumentScanSnap
       if(cp.offset>=before.length-tail&&cp.offset>=prefix.offset&&cp.offset<before.length&&validCut(source,cp.offset+delta))
         candidates.set(cp.offset+delta,cp);
     }
-    const middle=scanFrom(source,prefix.offset,offset=>{
-      const candidate=candidates.get(offset);
-      if(!candidate)return false;
-      suffix=candidate;return true;
-    },true);
+    const middle=scanFrom(source,prefix.offset,offset=>candidates.has(offset),true);
+    const suffix=middle.end<source.length?candidates.get(middle.end):undefined;
     const blocks=old.result.blocks.slice(0,prefix.blocks).map(b=>copyBlock(b,0));
     const diagnostics=old.result.diagnostics.slice(0,prefix.diagnostics).map(d=>copyDiagnostic(d,0));
     const checkpoints=old.checkpoints.filter(cp=>cp.offset<prefix.offset).map(cp=>({...cp}));
@@ -88,7 +84,7 @@ function scanFrom(source:string,offset:number,stop?:(offset:number)=>boolean,col
   const blocks:Block[]=[], diagnostics:Diagnostic[]=[], stack:Extract<Block,{kind:'directive'}>[]=[];
   const checkpoints:Checkpoint[]=collect?[{offset,blocks:0,diagnostics:0}]:[];
   // One line lookahead, not an eagerly materialized array of the entire file.
-  const pattern=/[^\\r\\n]*(?:\\r\\n|\\r|\\n|$)/g;
+  const pattern=/[^\r\n]*(?:\r\n|\r|\n|$)/g;
   pattern.lastIndex=offset;
   const lines=source.matchAll(pattern);
   const read=()=>{const next=lines.next();return next.done||!next.value[0].length?undefined:next.value;};
@@ -98,7 +94,7 @@ function scanFrom(source:string,offset:number,stop?:(offset:number)=>boolean,col
   let protectedBlock:{kind:'code'|'math'|'raw';start:number;end:number;close:(line:string)=>boolean}|undefined;
   let boundary=true;
   for(;m;m=next,next=read()){
-    const nextLine=next?.[0].replace(/(?:\\r\\n|\\r|\\n)$/,'');
+    const nextLine=next?.[0].replace(/(?:\r\n|\r|\n)$/,'');
     const validAfter=(parentFence?:number)=>nextLine===undefined||/^[ \t]*$/.test(nextLine)||(parentFence!==undefined&&nextLine.replace(/[ \t]+$/,'')===':'.repeat(parentFence));
     const start=m.index!,end=start+m[0].length,line=m[0].replace(/(?:\r\n|\r|\n)$/,'');
     endOffset=end;
