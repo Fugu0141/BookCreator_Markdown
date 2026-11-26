@@ -7,7 +7,7 @@
 2. CommonMark/GFMの標準fixtureとBCMの構文競合fixtureを作る。remark等の候補の拡張性・原文位置・未知構文の扱いを検証する。
 3. AST/CST相当の範囲、opaque、診断、属性型を実装。コード・数式・脚注・入れ子・エスケープ・不正入力の境界を確認する。
 4. 局所パッチ、revision前提条件、原文/改行/BOM保持、参照索引・複製時のID変換を実装する。
-5. CLI、外部利用API、ブラウザ検証、BookCreator共通fixtureを作る。パッケージ名、Node最低版、配布ライセンスは確認後に決定。
+5. CLI、外部利用API、ブラウザ検証、BookCreator共通fixtureを作る。パッケージ名、Node最低版は確認後に決定。プロジェクトのライセンスはMIT。依存・配布素材の権利確認は継続する。
 
 ## Fixtureの構成
 
